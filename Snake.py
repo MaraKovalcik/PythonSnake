@@ -7,7 +7,7 @@ class Snake(Frame):
 
     def __init__(self):
         super().__init__()
-        self.master.title('Snake')
+        self.master.title('Awesome snake')
         self.board = Board()
         self.pack()
 

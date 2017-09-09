@@ -41,11 +41,11 @@ class Board(Canvas):
         '''loads images from the disk'''
 
         try:
-            self.idot = Image.open("dot.png")
+            self.idot = Image.open("img/dot.png")
             self.dot = ImageTk.PhotoImage(self.idot)
-            self.ihead = Image.open("head.png")
+            self.ihead = Image.open("img/head.png")
             self.head = ImageTk.PhotoImage(self.ihead)
-            self.iapple = Image.open("apple.png")
+            self.iapple = Image.open("img/apple.png")
             self.apple = ImageTk.PhotoImage(self.iapple)
 
         except IOError as e:
