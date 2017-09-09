@@ -1,22 +1,11 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
 import sys
 import random
 from PIL import Image
 from PIL import ImageTk
 from tkinter import Tk, Frame, Canvas, ALL, NW
-
-class Cons:
-
-    BOARD_WIDTH = 300
-    BOARD_HEIGHT = 300
-    DELAY = 100
-    DOT_SIZE = 10
-    MAX_RAND_POS = 27
+from Cons import *
 
 class Board(Canvas):
-
     def __init__(self):
         super().__init__(width=Cons.BOARD_WIDTH, height=Cons.BOARD_HEIGHT,
             background="black", highlightthickness=0)
@@ -214,24 +203,3 @@ class Board(Canvas):
         self.delete(ALL)
         self.create_text(self.winfo_width() /2, self.winfo_height()/2,
             text="Game Over with score {0}".format(self.score), fill="white")
-
-
-class Snake(Frame):
-
-    def __init__(self):
-        super().__init__()
-
-        self.master.title('Snake')
-        self.board = Board()
-        self.pack()
-
-
-def main():
-
-    root = Tk()
-    nib = Snake()
-    root.mainloop()
-
-
-if __name__ == '__main__':
-    main()
