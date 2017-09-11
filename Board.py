@@ -2,8 +2,10 @@ import sys
 import random
 from PIL import Image
 from PIL import ImageTk
-from tkinter import Tk, Frame, Canvas, ALL, NW
+from tkinter import Tk, Frame, Canvas, ALL, NW, Button, LEFT
+#from tkinter import *
 from Cons import *
+from Snake import *
 
 class Board(Canvas):
     def __init__(self):
@@ -18,7 +20,7 @@ class Board(Canvas):
         '''initializes game'''
 
         self.inGame = True
-        self.dots = 3
+        self.dots = Cons.START_DOTS_QUANT
         self.score = 0
 
         # variables used to move snake object
@@ -49,7 +51,6 @@ class Board(Canvas):
             self.apple = ImageTk.PhotoImage(self.iapple)
 
         except IOError as e:
-
             print(e)
             sys.exit(1)
 
@@ -62,9 +63,16 @@ class Board(Canvas):
         self.create_image(self.appleX, self.appleY, image=self.apple,
             anchor=NW, tag="apple")
         self.create_image(50, 50, image=self.head, anchor=NW,  tag="head")
-        self.create_image(30, 50, image=self.dot, anchor=NW, tag="dot")
-        self.create_image(40, 50, image=self.dot, anchor=NW, tag="dot")
 
+        self.posDotX = 30
+        self.posDotY = 40
+
+        n = Cons.START_DOTS_QUANT
+        while n > 0:
+            self.create_image(self.posDotX, self.posDotY, image=self.dot, anchor=NW, tag="dot")
+            self.posDotX+=10
+            self.posDotY+=10
+            n-=1
 
     def checkAppleCollision(self):
         '''checks if the head of snake collides with apple'''
@@ -203,3 +211,8 @@ class Board(Canvas):
         self.delete(ALL)
         self.create_text(self.winfo_width() /2, self.winfo_height()/2,
             text="Game Over with score {0}".format(self.score), fill="white")
+
+
+
+
+
